@@ -3,12 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Form Inputs</title>
+    <script>
+        function changeFun(creator, display){
+            // alert(document.getElementById("col").value);
+            var dis = document.getElementById(display);
+            var col = document.getElementById(creator);
+            dis.textContent = col.value;
+        }
+    </script>
 </head>
 <body>
     <table>
         <tr>
             <td>Text</td>
             <td> <input type="text"/> </td>
+        </tr>
+        <tr>
+            <td>Search</td>
+            <td> <input type="search"/> </td>
+        </tr>
+        <tr>
+            <td>Color</td>
+            <td> 
+                <input id="col" onchange="changeFun('col','cd')" type="color"/>
+                Selected Color : <span id="cd"></span> 
+            </td>
+        </tr>
+        <tr>
+            <td>Range</td>
+            <td> 
+                <input id="rng" onchange="changeFun('rng','rd')" type="range"/>
+                Selected Range : <span id="rd"></span> 
+            </td>
         </tr>
     </table>
 </body>
