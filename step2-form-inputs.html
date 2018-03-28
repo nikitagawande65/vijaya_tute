@@ -4,36 +4,96 @@
     <meta charset="UTF-8">
     <title>Form Inputs</title>
     <script>
-        function changeFun(creator, display){
-            // alert(document.getElementById("col").value);
-            var dis = document.getElementById(display);
-            var col = document.getElementById(creator);
-            dis.textContent = col.value;
-        }
+    function changeFun(ip,op){
+       // alert("hello");
+       var elm = document.getElementById(ip);
+       var dis = document.getElementById(op);
+       dis.value = elm.value;
+    };
     </script>
 </head>
 <body>
+    <h1>IBM</h1>
     <table>
         <tr>
             <td>Text</td>
-            <td> <input type="text"/> </td>
+            <td>
+                <input type="text"/>
+            </td>
         </tr>
         <tr>
             <td>Search</td>
-            <td> <input type="search"/> </td>
+            <td>
+                <input type="search"/>
+            </td>
         </tr>
         <tr>
             <td>Color</td>
-            <td> 
+            <td>
                 <input id="col" onchange="changeFun('col','cd')" type="color"/>
-                Selected Color : <span id="cd"></span> 
+                <output id="cd"></output>
             </td>
         </tr>
         <tr>
             <td>Range</td>
-            <td> 
-                <input id="rng" onchange="changeFun('rng','rd')" type="range"/>
-                Selected Range : <span id="rd"></span> 
+            <td>
+                <input id="rng" onchange="changeFun('rng','rd')"  type="range"/>
+                <output id="rd"></output>
+            </td>
+        </tr>
+        <tr>
+            <td>Time</td>
+            <td>
+                <input id="tme" onchange="changeFun('tme','td')"  type="time"/>
+                <output id="td"></output>
+            </td>
+        </tr>
+        <tr>
+            <td>Date</td>
+            <td>
+                <input id="dat" onchange="changeFun('dat','dd')"  type="date"/>
+                <output id="dd"></output>
+            </td>
+        </tr>
+        <tr>
+            <td>Month</td>
+            <td>
+                <input id="mon" onchange="changeFun('mon','md')"  type="month"/>
+                <output id="md"></output>
+            </td>
+        </tr>
+        <tr>
+            <td>Week</td>
+            <td>
+                <input id="wek" onchange="changeFun('wek','wd')"  type="week"/>
+                <output id="wd"></output>
+            </td>
+        </tr>
+        <tr>
+            <td>Number</td>
+            <td>
+                <input id="num" min="5" max="50" step="5" onchange="changeFun('num','nd')"  type="number"/>
+                <output id="nd"></output>
+            </td>
+        </tr>
+    </table>
+    <hr/>
+    <table>
+        <tr>
+            <td>Progress</td>
+            <td>
+                <input id="prog" min="0" max="1" step=".1" 
+                onchange="changeFun('prog','pd')"  type="range"/>
+                <progress id="pd"></progress>
+            </td>
+        </tr>
+        <tr>
+            <td>Meter</td>
+            <td>
+                <meter value="0.9" low="0.4" high="0.8"></meter>
+                <meter low="0.4" high="0.8" optimum="0.5" value="0.6"></meter>
+                <meter low="0.4" high="0.8" optimum="0.9" value="0.3"></meter>
+                <meter low="0.4" high="0.8" optimum="0.2" value="0.9"></meter>
             </td>
         </tr>
     </table>
