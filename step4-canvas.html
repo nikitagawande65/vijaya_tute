@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas</title>
+    <style>
+        canvas{
+            border: 2px solid red;
+        }
+    </style>
+    <script>
+        // window.onload = init;
+        // window.addEventListener("load", init);
+        document.addEventListener("DOMContentLoaded",init);
+        function init(){
+            var can = document.getElementById("can");
+            var ctx = can.getContext("2d");
+            /* STEP 1
+                // ctx.font = "bold 24px Arial";
+                // ctx.rotate((Math.PI/180)*90);
+                // ctx.scale(1,2);// 
+                // ctx.translate(10,30);
+                // ctx.fillText("IBM", 0, 30);
+                // ctx.fillText("Bangalore", 0, 50);
+                // Transforms
+                // Rotate
+                // Scale
+                // Translate
+            */
+            var pic = new Image();
+                pic.src = "images/rajani.jpg";
+                pic.addEventListener("load", function(){
+                    ctx.rotate((Math.PI/180)*45);
+                    ctx.drawImage(pic,0,0);
+                })
+        };
+    </script>
+</head>
+<!--body onload="init()"-->
+<body>
+    <canvas width="500" height="500" id="can"> value </canvas>
+</body>
+</html>

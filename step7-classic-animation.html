@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Classic Animation</title>
+    <script>
+    document.addEventListener("DOMContentLoaded", init);
+    var ctx;
+    var boxX = 0;
+    function init(){
+        ctx = document.getElementsByTagName("canvas")[0].getContext("2d");
+    };
+        var img = new Image();
+            img.src = "images/horse.jpg";
+            img.addEventListener("load", function(){
+                setInterval(function(){
+                   ctx.drawImage(img,boxX,0);
+                   boxX-=200;
+                   if(boxX < -2200){
+                       boxX = 0;
+                   }
+                    // console.log(boxX);
+                },50)
+            });
+        
+    </script>
+</head>
+<body>
+    <canvas width="200" height="134"></canvas>
+</body>
+</html>
