@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+        window.addEventListener("message", function(e){
+            document.getElementById("log").textContent=e.data;
+        })
+        document.getElementById("parentBtn").addEventListener("click", function(){
+           var origin = "http://127.0.0.1:6565";
+           //-----------------------------------------
+           var chat = document.getElementById("ti1").value;
+           document.getElementById("ibm")
+           .contentWindow
+           .postMessage(chat, origin);
+           document.getElementById("ti1").value = "";
+           //-----------------------------------------
+        });
+    });
+    </script>
+</head>
+<body style="background-color:cornsilk">
+    <h1>Parent Application</h1>
+    <div>Message : <span id="log">Default Message</span></div>
+    <hr/>
+    <input id="ti1"/>
+    <button id="parentBtn">Chat</button>
+    <hr/>
+    <iframe src="http://127.0.0.1:6565/" 
+            id="ibm"
+            width="400" 
+            height="250" 
+            frameborder="0" />
+</body>
+</html>

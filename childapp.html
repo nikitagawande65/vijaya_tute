@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+    window.addEventListener("message", function(evt){
+        // if(e.origin == "http://localhost:5656/"){
+            document.getElementById("log").innerHTML = evt.data;
+        
+    })
+     document.addEventListener("DOMContentLoaded", function(){
+         document.getElementById("childBtn").addEventListener("click", function(){
+            var chat = document.getElementById("ti2").value; 
+            window.parent.postMessage(chat, "http://127.0.0.1:5656");
+            document.getElementById("ti2").value = "";
+         })
+    });
+    </script>
+</head>
+<body style="background-color: darkgrey">
+    <h1>Child Application</h1>
+    <div>Message : <span id="log">Default Message</span></div>
+    <hr/>
+    <input id="ti2"/>
+    <button id="childBtn">Chat</button>
+
+</body>
+</html>
