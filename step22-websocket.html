@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Socket Example</title>
+    <style>
+        textarea, input, button{
+            width: 400px;
+        }
+    </style>
+    <script>
+    var ibmsocet;
+    document.addEventListener("DOMContentLoaded", function(){
+        document.getElementsByTagName("button")[0].addEventListener("click", connectHandler);
+        document.getElementsByTagName("button")[1].addEventListener("click", closeHandler);
+        document.getElementsByTagName("button")[2].addEventListener("click", messageSendHandler);
+    });
+        
+    function connectHandler(){
+            ibmsocet = new WebSocket("ws://echo.websocket.org");
+            ibmsocet.onopen = openHandler;
+            // ibmsocet.addEventListener("open", openHandler);
+            ibmsocet.addEventListener("error", errorHandler);
+            ibmsocet.addEventListener("close", disconnectHandler);
+            ibmsocet.addEventListener("message", messageHandler);
+    };
+        function closeHandler(){
+                ibmsocet.close();
+        };
+        function messageSendHandler(){
+               var chat = document.getElementsByTagName("input")[0].value;
+               ibmsocet.send(chat);
+               document.getElementsByTagName("input")[0].value = "";
+        };
+        function openHandler(){
+            alert("socket connection is now available");
+        }
+        function errorHandler(error){
+            alert("socket error : " + error );
+        }
+        function disconnectHandler(){
+            alert("socket connection is now closed");
+        }
+        function messageHandler(message){
+            document.getElementsByTagName("textarea")[0].value += message.data.toString().toUpperCase()+"\n"
+        }
+    </script>
+</head>
+<body>
+    <button>Connect</button>
+    <br/>
+    <button>DisConnect</button>
+    <hr/>
+    <textarea  
+    name="inBox" 
+    id="inBox" 
+    cols="30" 
+    rows="10"></textarea>
+    <br/>
+    <input type="text" />
+    <br/>
+    <button>Send</button>
+
+</body>
+</html>
