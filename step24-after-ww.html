@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Workers</title>
+    <script>
+    var ww ;
+    document.addEventListener("DOMContentLoaded", function(){
+        document.querySelector("#numbtn").addEventListener("click", changeNum);
+        document.querySelector("#startbtn").addEventListener("click", startWorker);
+        document.querySelector("#stopbtn").addEventListener("click", stopWorker);
+    });
+    function startWorker(){
+        var btn = document.querySelector("#startbtn");
+        ww = new Worker("workers/worker2.js");
+        ww.addEventListener("message", messageHandler);
+        document.querySelector("#stopbtn").addEventListener("click", stopWorker);
+        btn.removeEventListener("click", startWorker);
+        btn.setAttribute("disabled", true);
+    };
+    function messageHandler(evt){
+        document.getElementById("log").textContent = evt.data;
+    };
+    function changeNum(){
+        ww.postMessage(document.querySelector("#numval").value);
+    };
+    function stopWorker(){
+        ww.terminate();
+        var btn = document.querySelector("#startbtn");
+        alert("worker is now terminated")
+        ww.removeEventListener("message", messageHandler);
+        document.querySelector("#stopbtn").removeEventListener("click", stopWorker)
+        btn.addEventListener("click", startWorker);
+        btn.removeAttribute("disabled", true);
+    };
+    </script>
+</head>
+<body>
+    <input id="numval">
+    <button id="numbtn">Change Num</button>
+    <h1>Count now is : <output id="log"></output></h1>
+    <button id="startbtn">Start Worker</button>
+    <button id="stopbtn">Stop Worker</button>
+</body>
+</html>
